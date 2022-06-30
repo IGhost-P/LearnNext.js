@@ -1,42 +1,46 @@
-import Link from "next/link";
+import Button from '../ui/button';
+import DateIcon from '../icons/date-icon';
+import AddressIcon from '../icons/address-icon';
+import ArrowRightIcon from '../icons/arrow-right-icon';
+import classes from './event-item.module.css';
 
-export default function EventItem({
-  id,
-  location,
-  title,
-  date,
-  image,
-  description,
-}) {
-  const humanDate = new Date(date).toLocaleDateString({
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+function EventItem(props) {
+  const { title, image, date, location, id } = props;
+
+  const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
   });
-
-  const humanLoaction = location.replaceAll(",", "\n");
+  const formattedAddress = location.replace(', ', '\n');
+  const exploreLink = `/events/${id}`;
 
   return (
-    <div>
-      <div>
-        {" "}
-        <h1>title</h1>
+    <li className={classes.item}>
+      <img src={'/' + image} alt={title} />
+      <div className={classes.content}>
+        <div className={classes.summary}>
+          <h2>{title}</h2>
+          <div className={classes.date}>
+            <DateIcon />
+            <time>{humanReadableDate}</time>
+          </div>
+          <div className={classes.address}>
+            <AddressIcon />
+            <address>{formattedAddress}</address>
+          </div>
+        </div>
+        <div className={classes.actions}>
+          <Button link={exploreLink}>
+            <span>Explore Event</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
+        </div>
       </div>
-      <div>
-        <img src={"/" + image} alt={title} width={200} height={200} />
-      </div>
-      <div>
-        <h2>{description}</h2>
-      </div>
-      <div>
-        <h2>{humanDate}</h2>
-      </div>
-      <div>
-        <h2>{humanLoaction}</h2>
-      </div>
-      <div>
-        <Link href={`/events/${id}`}>Explore Evnet</Link>
-      </div>
-    </div>
+    </li>
   );
 }
+
+export default EventItem;
