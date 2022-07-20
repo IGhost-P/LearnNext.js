@@ -1,8 +1,7 @@
 {
-  "/[pid]": "pages/[pid].js",
   "/_app": "pages/_app.js",
-  "/": "pages/index.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/[pid]": "pages/[pid].js",
+  "/": "pages/index.js"
 }
