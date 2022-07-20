@@ -18,14 +18,30 @@ function HomePage(props) {
 export default HomePage;
 
 export async function getStaticProps() {
+  console.log("RE-GETTING STATIC PROPS");
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = await fs.readFile(filePath, "utf-8");
   const data = JSON.parse(jsonData);
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/no-data",
+      },
+    };
+  }
+
+  if (data.products.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
       products: data.products,
     },
-    revalidate: 50, // 50 seconds
+    // notFound: true,
+    revalidate: 10, // 50 seconds
   };
 }
