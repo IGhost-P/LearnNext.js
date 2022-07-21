@@ -10,6 +10,7 @@ export default function UserProfile(props) {
 }
 
 export async function getServerSideProps(context) {
+  console.log("getServerSideProps");
   return {
     props: {
       username: "Max",

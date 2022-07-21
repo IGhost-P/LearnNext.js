@@ -1,7 +1,9 @@
 {
+  "/[uid]": "pages/[uid].js",
   "/_app": "pages/_app.js",
+  "/": "pages/index.js",
+  "/user-profile": "pages/user-profile.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/user-profile": "pages/user-profile.js",
-  "/[uid]": "pages/[uid].js"
+  "/404": "pages/404.html"
 }
