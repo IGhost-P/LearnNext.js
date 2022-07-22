@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useSWR } from "swr";
 export default function LastSalesPage(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [sales, setSales] = useState();
